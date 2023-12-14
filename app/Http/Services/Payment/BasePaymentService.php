@@ -2,6 +2,8 @@
 
 
 namespace App\Http\Services\Payment;
+use App\Http\Controllers\CashfreePaymentController;
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Log;
 
@@ -41,6 +43,9 @@ class BasePaymentService
             $this->get_way = new BitPayService($object);
         }elseif ($this->provider == BRAINTREE) {
             $this->get_way = new BrainTreeService($object);
+        }
+        elseif ($this->provider == CASHFREE) {
+            $this->get_way = new CashfreeService($object);
         }
     }
 
